@@ -7,18 +7,19 @@ class CalculadoraDNI2Test extends TestCase
 {
     public function testObtenerLetra()
     {
-        $dniSinLetra = 12345678;  // Ejemplo
-        $calc = new DNI($dniSinLetra);
+        $dniSinLetra = 12345678;
+        $calc = new CalculadoraDNI2($dniSinLetra);
 
-        $letraEsperada = 'Z'; // 12345678 % 23 = 14 => 'Z'
+        $letraEsperada = 'Z';
+        $letraObtenida = substr($calc->getDNIConLetra(), -1); // sacamos la letra final
 
-        $this->assertEquals($letraEsperada, $calc->obtenerLetra());
+        $this->assertEquals($letraEsperada, $letraObtenida);
     }
 
     public function testDNIConLetraCompleto()
     {
         $dniSinLetra = 12345678;
-        $calc = new DNI($dniSinLetra);
+        $calc = new CalculadoraDNI2($dniSinLetra);
 
         $dniConLetraEsperado = '12345678Z';
 
