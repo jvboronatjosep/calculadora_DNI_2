@@ -1,27 +1,32 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use CalculadoraDNI2\DNI;
+namespace App;
+class CalculadoraDNI2 {
+    // Atributos
+    private $dniSinLetra; // Número del DNI
+    private $dniConLetra; // Número del DNI con la letra
 
-class CalculadoraDNI2 extends TestCase
-{
-    public function testObtenerLetra()
-    {
-        $dniSinLetra = 12345678;  // Ejemplo
-        $calc = new DNI($dniSinLetra);
-
-        $letraEsperada = 'Z'; // 12345678 % 23 = 14 => 'Z'
-
-        $this->assertEquals($letraEsperada, $calc->obtenerLetra());
+    // Constructor
+    public function __construct($dniSinLetra) {
+        $this->dniSinLetra = $dniSinLetra;
+        $this->dniConLetra = $this->calcularDNIConLetra();
     }
 
-    public function testDNIConLetraCompleto()
-    {
-        $dniSinLetra = 12345678;
-        $calc = new DNI($dniSinLetra);
-
-        $dniConLetraEsperado = '12345678Z';
-
-        $this->assertEquals($dniConLetraEsperado, $calc->getDNIConLetra());
+    // Método para calcular la letra del DNI
+    private function calcularLetraDNI($dniSinLetra) {
+        $letras = "TRWAGMYFPDXBNJZSQVHLCKE"; // Secuencia de letras del DNI
+        $indice = $dniSinLetra % 23; // Índice según el módulo 23
+        return $letras[$indice]; // Devuelve la letra correspondiente
     }
+
+    // Método para generar el DNI completo con la letra
+    private function calcularDNIConLetra() {
+        $letra = $this->calcularLetraDNI($this->dniSinLetra);
+        return $this->dniSinLetra . $letra;
+    }
+
+    public function getDNIConLetra() {
+        return $this->dniConLetra;
+    }
+
 }

@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use CalculadoraDNI2\DNI;
+use App\CalculadoraDNI2;
 
 class CalculadoraDNI2Test extends TestCase
 {
