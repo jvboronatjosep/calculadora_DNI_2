@@ -3,7 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use CalculadoraDNI2\DNI;
 
-class DNITest extends TestCase
+class CalculadoraDNI2 extends TestCase
 {
     public function testObtenerLetra()
     {
